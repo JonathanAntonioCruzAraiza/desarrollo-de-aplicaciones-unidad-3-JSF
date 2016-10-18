@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{str.productoFormTitle}</title>
+    </h:head>
+    <h:body>
+       <ui:composition template="/templates/template.xhtml">
+                <ui:define name="contenido">
+                    <h2>#{str.productoHeader}</h2>
+                    <p:fieldset legend="#{str.productoLegendForm}">
+                         <h:form>
+                             <h:panelGrid columns="1">
+                                 <p:inputText placeholder="#{str.cantidadPrompt}" value="#{productoBean.producto.cantidad}"></p:inputText>
+                                 <p:inputText placeholder="#{str.descripcionPrompt}" value="#{productoBean.producto.descripcion}"></p:inputText>
+                                 <p:inputText placeholder="#{str.namePrompt}" value="#{productoBean.producto.nombre}"></p:inputText>
+                                
+                                 <p:selectOneMenu value="#{productoBean.producto.proveedor.idProveedor}">
+                                     <f:selectItems value="#{productoBean.proveedores}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.idProveedor}"></f:selectItems>                                     
+                                 </p:selectOneMenu>                                 
+                             </h:panelGrid>
+                             <p:commandButton value="#{str.buttonSave}" action="#{productoBean.guardar()}" />
+                             <p:commandButton value="#{str.buttonDelete}" action="#{productoBean.eliminar()}" />
+                             <p:commandButton value="#{str.buttonCancel}" action="#{productoBean.cancelar()}" />
+                          </h:form>
+                    </p:fieldset>
+                </ui:define>
+            </ui:composition>
+    </h:body>
+</html>
+
